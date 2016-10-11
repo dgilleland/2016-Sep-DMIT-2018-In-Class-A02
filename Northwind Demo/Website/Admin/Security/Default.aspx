@@ -7,6 +7,24 @@
     <div class="row">
         <div class="col-md-8">
             <h2>Users</h2>
+            <asp:ListView ID="UserListView" runat="server"
+                 ItemType="Northwind.Application.Security.ApplicationUser">
+                <LayoutTemplate>
+                    <div class="row">
+                        <div class="col-sm-3 bg-info">Action</div>
+                        <div class="col-sm-3 bg-info">User Name</div>
+                        <div class="col-sm-6 bg-info">Profile</div>
+                    </div>
+                    <div runat="server" id="itemPlaceholder"></div>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3"><%# Item.UserName %></div>
+                        <div class="col-sm-6"><%# Item.Email %></div>
+                    </div>
+                </ItemTemplate>
+            </asp:ListView>
         </div>
         <div class="col-md-4">
             <h2>Roles</h2>

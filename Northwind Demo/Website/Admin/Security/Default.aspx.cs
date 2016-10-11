@@ -13,7 +13,14 @@ public partial class Admin_Security_Default : System.Web.UI.Page
         if(!IsPostBack)
         {
             DataBindRoleList();
+            DataBindUserList();
         }
+    }
+
+    private void DataBindUserList()
+    {
+        UserListView.DataSource = new UserManager().Users.ToList();
+        UserListView.DataBind();
     }
 
     private void DataBindRoleList()
