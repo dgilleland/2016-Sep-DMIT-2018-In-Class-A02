@@ -12,11 +12,12 @@ namespace Northwind.Application.BLL
     [DataObject]
     public class SalesController
     {
-        public CustomerHistory GetCustomerHistory(int customerId)
+        public CustomerHistory GetCustomerHistory(string customerId)
         {
             using (var context = new NorthwindContext())
             {
                 var results = from data in context.Customers
+                              where data.CustomerID == customerId
                               select new CustomerHistory()
                               {
                                   CompanyName = data.CompanyName,

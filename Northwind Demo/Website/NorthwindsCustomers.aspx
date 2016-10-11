@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <h1>Northwind Customers</h1>
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="CustomerListDataSource" AllowPaging="True">
+    <asp:GridView ID="CustomerGridView" runat="server" AutoGenerateColumns="False" DataSourceID="CustomerListDataSource" AllowPaging="True" OnSelectedIndexChanged="CustomerGridView_SelectedIndexChanged" DataKeyNames="CustomerId">
         <Columns>
             <asp:CommandField ShowSelectButton="True"></asp:CommandField>
             <asp:BoundField DataField="CustomerId" HeaderText="CustomerId" SortExpression="CustomerId"></asp:BoundField>
@@ -16,6 +16,12 @@
         </Columns>
     </asp:GridView>
     <asp:ObjectDataSource ID="CustomerListDataSource" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="ListCustomers" TypeName="Northwind.Application.BLL.SalesController"></asp:ObjectDataSource>
-
+    <asp:Label ID="MessageLabel" runat="server" />
+    <hr />
+    <asp:Repeater ID="SelectedCustomerOrders" runat="server" ItemType="Northwind.Application.DataModels.CustomerOrder">
+        <ItemTemplate>
+            <%# Item.OrderedOn %>
+        </ItemTemplate>
+    </asp:Repeater>
 </asp:Content>
 
