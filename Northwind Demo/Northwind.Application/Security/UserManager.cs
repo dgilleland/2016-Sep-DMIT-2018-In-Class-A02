@@ -31,6 +31,7 @@ namespace Northwind.Application.Security
                     Email = string.Format(STR_EMAIL_FORMAT, STR_WEBMASTER_USERNAME)
                 };
                 this.Create(webMasterAccount, STR_DEFAULT_PASSWORD);
+                this.AddToRole(webMasterAccount.Id, SecurityRoles.WebsiteAdmins);
             }
         }
     }

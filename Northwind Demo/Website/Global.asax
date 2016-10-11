@@ -11,6 +11,10 @@
         RouteConfig.RegisterRoutes(RouteTable.Routes);
         BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+        // Ensure the default roles are set up
+        var RoleManager = new RoleManager();
+        RoleManager.AddDefaultRoles();
+
         // Ensure there is a Webmaster account
         var UserManager = new UserManager();
         UserManager.AddWebMaster();
