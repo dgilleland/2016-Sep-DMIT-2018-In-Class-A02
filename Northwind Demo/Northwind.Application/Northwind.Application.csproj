@@ -66,6 +66,9 @@
     <Compile Include="DataModels\ShipAddress.cs" />
     <Compile Include="DataModels\ShipDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\ApplicationDbContext.cs" />
+    <Compile Include="Security\ApplicationUser.cs" />
+    <Compile Include="Security\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

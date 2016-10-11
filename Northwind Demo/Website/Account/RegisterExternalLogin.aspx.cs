@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Northwind.Application.Security;
 using System;
 using System.Web;
 using Website;
