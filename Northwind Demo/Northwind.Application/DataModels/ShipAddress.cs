@@ -11,10 +11,10 @@ namespace Northwind.Application.DataModels
         {
             
         }
-        public object CareOf { get; set; }
-        public object Address { get; set; }
-        public object City { get; set; }
-        public object Region { get; set; }
-        public object Country { get; set; }
+        public string CareOf { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string Country { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace Northwind.Application.DataModels
             
         }
         public string Name { get; set; }
-        public object Photo { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

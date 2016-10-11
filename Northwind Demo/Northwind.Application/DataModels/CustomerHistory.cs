@@ -11,6 +11,6 @@ namespace Northwind.Application.DataModels
         {
 
         }
-        public object Orders { get; set; }
+        public IEnumerable<CustomerOrder> Orders { get; set; }
     }
 }

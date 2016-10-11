@@ -11,10 +11,10 @@ namespace Northwind.Application.DataModels
         {
             
         }
-        public object Item { get; set; }
-        public object Unit { get; set; }
-        public object OrderQuantity { get; set; }
-        public object UnitPrice { get; set; }
-        public object Discount { get; set; }
+        public string Item { get; set; }
+        public string Unit { get; set; }
+        public short OrderQuantity { get; set; }
+        public decimal UnitPrice { get; set; }
+        public double Discount { get; set; }
     }
 }

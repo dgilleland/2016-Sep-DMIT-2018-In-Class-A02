@@ -9,7 +9,7 @@ namespace Northwind.Data.DAL
     public partial class NorthwindContext : DbContext
     {
         public NorthwindContext()
-            : base("name=NorthwindContext")
+            : base("name=NorthwindDb")
         {
         }
 

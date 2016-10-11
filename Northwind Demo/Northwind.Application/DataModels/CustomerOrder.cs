@@ -11,10 +11,10 @@ namespace Northwind.Application.DataModels
         {
             
         }
-        public object OrderedOn { get; set; }
-        public object RequiredBy { get; set; }
+        public DateTime? OrderedOn { get; set; }
+        public DateTime? RequiredBy { get; set; }
         public ShipDetails Shipping { get; set; }
-        public object OrderDetails { get; set; }
+        public IEnumerable<CustomerOrderDetail> OrderDetails { get; set; }
         public SalesRepresentative SalesRep { get; set; }
     }
 }

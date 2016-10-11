@@ -2,12 +2,14 @@
 using Northwind.Data.DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Northwind.Application.BLL
 {
+    [DataObject]
     public class SalesController
     {
         public CustomerHistory GetCustomerHistory(int customerId)
@@ -62,6 +64,7 @@ namespace Northwind.Application.BLL
             }
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Customer> ListCustomers()
         {
             using (var context = new NorthwindContext())
@@ -69,6 +72,7 @@ namespace Northwind.Application.BLL
                 var customers = from buyer in context.Customers
                                 select new Customer
                                 {
+                                    CustomerId = buyer.CustomerID,
                                     CompanyName = buyer.CompanyName,
                                     ContactName = buyer.ContactName,
                                     ContactTitle = buyer.ContactTitle,

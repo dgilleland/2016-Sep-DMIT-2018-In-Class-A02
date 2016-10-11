@@ -11,8 +11,8 @@ namespace Northwind.Application.DataModels
         {
             
         }
-        public object ShippedOn { get; set; }
-        public object Shipper { get; set; }
+        public DateTime? ShippedOn { get; set; }
+        public string Shipper { get; set; }
         public ShipAddress ShipTo { get; set; }
     }
 }
