@@ -20,8 +20,22 @@
     <hr />
     <asp:Repeater ID="SelectedCustomerOrders" runat="server" ItemType="Northwind.Application.DataModels.CustomerOrder">
         <ItemTemplate>
-            <%# Item.OrderedOn %>
+            <asp:Label ID="OrderDate" runat="server" Visible="<%# Item.OrderedOn.HasValue %>">Ordered on <b><%# Item.OrderedOn.Value.ToShortDateString() %></b></asp:Label>
+            <asp:Label ID="RequiredDate" runat="server" Visible="<%# Item.RequiredBy.HasValue %>">Required by <b><%# Item.RequiredBy.Value.ToShortDateString() %></b></asp:Label>
+            <img src='<%# @"data:image/gif;base64," + Convert.ToBase64String(Item.SalesRep.CleanPhoto) %>' width="48" height="56" />
+            <asp:Label ID="ShippedDate" runat="server" Visible="<%# Item.Shipping.ShippedOn.HasValue %>">Shipped on <b><%# Item.Shipping.ShippedOn.Value.ToShortDateString() %></b> by <%# Item.Shipping.Shipper %></asp:Label>
+            <%# Item.Shipping.ShipTo %>
+            <details>
+                <summary>Order Items</summary>
+                <asp:Repeater ID="Details" runat="server" ItemType="Northwind.Application.DataModels.CustomerOrderDetail" DataSource="<%# Item.OrderDetails %>">
+                    <ItemTemplate>
+                        <%# Item.OrderQuantity %> - <%# Item.Item %> (<%# Item.UnitPrice.ToString("C") %> - <%# Item.Unit %>)
+                    </ItemTemplate>
+                    <SeparatorTemplate><br /></SeparatorTemplate>
+                </asp:Repeater>
+            </details>
         </ItemTemplate>
+        <SeparatorTemplate><hr /></SeparatorTemplate>
     </asp:Repeater>
 </asp:Content>
 

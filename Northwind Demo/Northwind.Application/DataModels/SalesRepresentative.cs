@@ -13,5 +13,12 @@ namespace Northwind.Application.DataModels
         }
         public string Name { get; set; }
         public byte[] Photo { get; set; }
+        public byte[] CleanPhoto
+        {
+            get
+            {
+                return Photo.Skip(78).ToArray();
+            }
+        }
     }
 }
