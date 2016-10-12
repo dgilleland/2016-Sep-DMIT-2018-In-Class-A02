@@ -30,14 +30,14 @@ namespace Northwind.Application.Security
         public List<RoleProfile> ListAllRoles()
         {
             var um = new UserManager();
-            var result = from data in Roles
+            var result = from data in Roles.ToList() // .ToList() pulls db data into memory
                          select new RoleProfile()
                          {
                              RoleId = data.Id,
                              RoleName = data.Name,
-                             UserNames = from user in data.Users
-                                         select um.FindById(user.UserId).UserName
+                             UserNames = data.Users.Select(u => um.FindById(u.UserId).UserName)
                          };
+
             return result.ToList();
         }
 
@@ -51,8 +51,7 @@ namespace Northwind.Application.Security
         [DataObjectMethod(DataObjectMethodType.Delete, true)]
         public void RemoveRole(RoleProfile role)
         {
-            if (this.RoleExists(role.RoleName))
-                this.Delete(this.FindByName(role.RoleName));
+            this.Delete(this.FindById(role.RoleId));
         }
     }
 }
