@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Northwind.Application.Security
 {
+    [DataObject]
     public class RoleManager : RoleManager<IdentityRole>
     {
         public RoleManager()
@@ -21,6 +24,35 @@ namespace Northwind.Application.Security
                     this.Create(new IdentityRole(roleName));
                 }
             }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, true)]
+        public List<RoleProfile> ListAllRoles()
+        {
+            var um = new UserManager();
+            var result = from data in Roles
+                         select new RoleProfile()
+                         {
+                             RoleId = data.Id,
+                             RoleName = data.Name,
+                             UserNames = from user in data.Users
+                                         select um.FindById(user.UserId).UserName
+                         };
+            return result.ToList();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert, true)]
+        public void AddRole(RoleProfile role)
+        {
+            if (!this.RoleExists(role.RoleName))
+                this.Create(new IdentityRole(role.RoleName));
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, true)]
+        public void RemoveRole(RoleProfile role)
+        {
+            if (this.RoleExists(role.RoleName))
+                this.Delete(this.FindByName(role.RoleName));
         }
     }
 }
