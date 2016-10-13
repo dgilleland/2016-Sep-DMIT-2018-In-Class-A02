@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- Nav tabs -->
-            <ul id="myTabs" class="nav nav-tabs">
+            <ul class="nav nav-tabs">
                 <li class="active"><a href="#users" data-toggle="tab">Users</a></li>
                 <li><a href="#roles" data-toggle="tab">Security Roles</a></li>
                 <li><a href="#unregistered" data-toggle="tab">Unregistered Users</a></li>
