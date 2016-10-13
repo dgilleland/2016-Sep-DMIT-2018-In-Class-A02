@@ -16,7 +16,9 @@
                 <div class="tab-pane fade in active" id="users">
                     <asp:ListView ID="UserListView" runat="server"
                          DataSourceID="UserProfileDataSource"
-                         ItemType="Northwind.Application.Security.UserProfile">
+                         ItemType="Northwind.Application.Security.UserProfile"
+                         DataKeyNames="UserId" InsertItemPosition="LastItem"
+                         OnItemInserting="UserListView_ItemInserting">
                         <LayoutTemplate>
                             <div class="row bg-info">
                                 <div class="col-sm-2 h4">Action</div>
@@ -28,13 +30,13 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <div class="row">
-                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2"><asp:LinkButton runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" /></div>
                                 <div class="col-sm-2"><%# Item.UserName %></div>
                                 <div class="col-sm-5">
                                     <%# Item.Email %>
                                     <%# Item.FirstName + " " + Item.LastName %>
                                 </div>
-                                <div class="col-sm-3 h4">
+                                <div class="col-sm-3">
                                     <asp:Repeater ID="RoleUserRepeater" runat="server"
                                             DataSource="<%# Item.RoleMemberships %>" ItemType="System.String">
                                         <ItemTemplate><%# Item %></ItemTemplate>
@@ -43,6 +45,24 @@
                                 </div>
                             </div>
                         </ItemTemplate>
+                        <InsertItemTemplate>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <asp:LinkButton runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
+                                    <asp:LinkButton runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <asp:TextBox Text='<%# BindItem.UserName %>' runat="server" ID="UserNameTextBox" placeholder="User Name" />
+                                </div>
+                                <div class="col-sm-5">
+                                    <asp:TextBox Text='<%# BindItem.Email %>' runat="server" ID="EmailTextBox" placeholder="Email" TextMode="Email" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <asp:CheckBoxList ID="RoleMemberships" runat="server" DataSource="<%# GetRoleNames() %>"></asp:CheckBoxList>
+                                </div>
+                            </div>
+                        </InsertItemTemplate>
                     </asp:ListView>
                     <asp:ObjectDataSource ID="UserProfileDataSource" runat="server" DataObjectTypeName="Northwind.Application.Security.UserProfile" DeleteMethod="RemoveUser" InsertMethod="AddUser" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllUsers" TypeName="Northwind.Application.Security.UserManager"></asp:ObjectDataSource>
                 </div>
@@ -77,6 +97,7 @@
                             </div>
                         </ItemTemplate>
                         <InsertItemTemplate>
+                            <hr />
                             <div class="row">
                                 <div class="col-sm-3">
                                     <asp:LinkButton runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />

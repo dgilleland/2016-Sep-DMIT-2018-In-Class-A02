@@ -4,6 +4,7 @@ using Northwind.Data.DAL;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System;
 
 namespace Northwind.Application.Security
 {
@@ -72,25 +73,22 @@ namespace Northwind.Application.Security
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
         public void AddUser(UserProfile userInfo)
         {
-
+            var userAccount = new ApplicationUser()
+            {
+                UserName = userInfo.UserName,
+                Email = userInfo.Email
+            };
+            this.Create(userAccount, STR_DEFAULT_PASSWORD);
+            foreach (var roleName in userInfo.RoleMemberships)
+                this.AddToRole(userAccount.Id, roleName);
         }
 
         [DataObjectMethod(DataObjectMethodType.Delete, true)]
         public void RemoveUser(UserProfile userInfo)
         {
-
-        }
-        #endregion
-
-        #region Business-based commands
-        public void ResetPassword(string userId)
-        {
-
-        }
-
-        public void UpdateEmail(string userId, string email)
-        {
-
+            if (userInfo.UserName == STR_WEBMASTER_USERNAME)
+                throw new Exception("The webmaster account cannot be removed");
+            this.Delete(this.FindById(userInfo.UserId));
         }
         #endregion
     }
