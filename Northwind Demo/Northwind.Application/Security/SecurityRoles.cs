@@ -11,7 +11,7 @@ namespace Northwind.Application.Security
         public const string WebsiteAdmins = "WebsiteAdmins";
         public const string RegisteredUsers = "RegisteredUsers";
         public const string Staff = "Staff";
-        public static List<string> DefaultSecurityRoles
+        public static List<string> StartupSecurityRoles
         {
             get
             {

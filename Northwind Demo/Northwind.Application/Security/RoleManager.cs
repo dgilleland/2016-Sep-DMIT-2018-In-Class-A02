@@ -14,9 +14,9 @@ namespace Northwind.Application.Security
         {
         }
 
-        public void AddDefaultRoles()
+        public void AddStartupRoles()
         {
-            foreach (string roleName in SecurityRoles.DefaultSecurityRoles)
+            foreach (string roleName in SecurityRoles.StartupSecurityRoles)
             {
                 // Check if it exists
                 if (!Roles.Any(r => r.Name == roleName))

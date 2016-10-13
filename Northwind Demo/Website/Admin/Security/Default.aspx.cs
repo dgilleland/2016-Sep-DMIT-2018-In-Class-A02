@@ -10,15 +10,5 @@ public partial class Admin_Security_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
-        {
-            DataBindUserList();
-        }
-    }
-
-    private void DataBindUserList()
-    {
-        UserListView.DataSource = new UserManager().Users.ToList();
-        UserListView.DataBind();
     }
 }

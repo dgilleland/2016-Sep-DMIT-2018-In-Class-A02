@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Northwind.Application
+namespace Northwind.Application.Security
 {
     /// <summary>
     /// RoleProfile is a Data Transfer Object summarizing information about the site's security roles.

@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Northwind.Data.DAL;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Northwind.Application.Security
 {
+    [DataObject]
     public class UserManager : UserManager<ApplicationUser>
     {
         public UserManager()
@@ -34,5 +38,60 @@ namespace Northwind.Application.Security
                 this.AddToRole(webMasterAccount.Id, SecurityRoles.WebsiteAdmins);
             }
         }
+
+        #region Standard CRUD Operations
+        [DataObjectMethod(DataObjectMethodType.Select, true)]
+        public List<UserProfile> ListAllUsers()
+        {
+            var rm = new RoleManager();
+            var result = from person in Users.ToList()
+                         select new UserProfile()
+                         {
+                             UserId = person.Id,
+                             UserName = person.UserName,
+                             Email = person.Email,
+                             EmailConfirmed = person.EmailConfirmed,
+                             CustomerId = person.CustomerId,
+                             EmployeeId = person.EmployeeId,
+                             RoleMemberships = person.Roles.Select(r => rm.FindById(r.RoleId).Name)
+                         };
+
+            // Get any first/last names of users
+            using (var context = new NorthwindContext())
+            {
+                foreach(var person in result)
+                    if(person.EmployeeId.HasValue)
+                    {
+                        person.FirstName = context.Employees.Find(person.EmployeeId).FirstName;
+                    }
+            }
+
+            return result.ToList();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert, true)]
+        public void AddUser(UserProfile userInfo)
+        {
+
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, true)]
+        public void RemoveUser(UserProfile userInfo)
+        {
+
+        }
+        #endregion
+
+        #region Business-based commands
+        public void ResetPassword(string userId)
+        {
+
+        }
+
+        public void UpdateEmail(string userId, string email)
+        {
+
+        }
+        #endregion
     }
 }
