@@ -18,7 +18,8 @@
                          DataSourceID="UserProfileDataSource"
                          ItemType="Northwind.Application.Security.UserProfile"
                          DataKeyNames="UserId" InsertItemPosition="LastItem"
-                         OnItemInserting="UserListView_ItemInserting">
+                         OnItemInserting="UserListView_ItemInserting"
+                         OnItemDeleted="RefreshAll" OnItemInserted="RefreshAll">
                         <LayoutTemplate>
                             <div class="row bg-info">
                                 <div class="col-sm-2 h4">Action</div>
@@ -69,7 +70,8 @@
                 <div class="tab-pane fade" id="roles">
                     <asp:ListView ID="RoleListView" runat="server" DataSourceID="RoleDataSource" 
                          InsertItemPosition="LastItem" DataKeyNames="RoleId" 
-                         ItemType="Northwind.Application.Security.RoleProfile">
+                         ItemType="Northwind.Application.Security.RoleProfile"
+                         OnItemDeleted="RefreshAll" OnItemInserted="RefreshAll">
                         <EmptyDataTemplate>
                             <span>No security roles have been set up.</span>
                         </EmptyDataTemplate>
@@ -112,7 +114,30 @@
                     <asp:ObjectDataSource runat="server" ID="RoleDataSource" DataObjectTypeName="Northwind.Application.Security.RoleProfile" DeleteMethod="RemoveRole" InsertMethod="AddRole" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllRoles" TypeName="Northwind.Application.Security.RoleManager"></asp:ObjectDataSource>
                 </div>
                 <div class="tab-pane fade" id="unregistered">
-                    TBA: Show unregistered Customers and Employees
+                    <asp:GridView ID="UnregisteredUsersGridView" runat="server" 
+                         CssClass="table table-hover" AutoGenerateColumns="False" 
+                         DataSourceID="UnregisteredUserDataSource"
+                         ItemType="Northwind.Application.Security.UnregisteredUser" 
+                         AllowPaging="True" DataKeyNames="Id"
+                         OnSelectedIndexChanging="UnregisteredUsersGridView_SelectedIndexChanging">
+                        <Columns>
+                            <asp:CommandField ShowSelectButton="True"></asp:CommandField>
+                            <asp:BoundField DataField="UserType" HeaderText="User Type" SortExpression="UserType"></asp:BoundField>
+                            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"></asp:BoundField>
+                            <asp:BoundField DataField="OtherName" HeaderText="Other Name" SortExpression="OtherName"></asp:BoundField>
+                            <asp:TemplateField HeaderText="Assigned UserName" SortExpression="AssignedUserName">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%# Bind("AssignedUserName") %>' ID="GivenUserName"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Assigned Email" SortExpression="AssignedEmail">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%# Bind("AssignedEmail") %>' ID="GivenEmail"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                    <asp:ObjectDataSource runat="server" ID="UnregisteredUserDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllUnregsiteredUsers" TypeName="Northwind.Application.Security.UserManager"></asp:ObjectDataSource>
                 </div>
             </div>
         </div>

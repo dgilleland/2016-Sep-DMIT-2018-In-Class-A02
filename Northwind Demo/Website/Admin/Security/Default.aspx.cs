@@ -28,4 +28,41 @@ public partial class Admin_Security_Default : System.Web.UI.Page
                     addToRoles.Add(item.Value);
         e.Values["RoleMemberships"] = addToRoles;
     }
+
+    protected void UnregisteredUsersGridView_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+    {
+        UnregisteredUsersGridView.SelectedIndex = e.NewSelectedIndex;
+        GridViewRow row = UnregisteredUsersGridView.SelectedRow;
+        if(row != null)
+        {
+            string userName = null, email = null;
+            UnregisteredUserType userType;
+            TextBox input;
+            input = row.FindControl("GivenUserName") as TextBox;
+            if (input != null)
+                userName = input.Text;
+            input = row.FindControl("GivenEmail") as TextBox;
+            if (input != null)
+                email = input.Text;
+            userType = (UnregisteredUserType)Enum.Parse(typeof(UnregisteredUserType), row.Cells[1].Text);
+            UnregisteredUser user = new UnregisteredUser()
+            {
+                Id = UnregisteredUsersGridView.SelectedDataKey.Value.ToString(),
+                UserType = userType,
+                Name = row.Cells[2].Text,
+                OtherName = row.Cells[3].Text,
+                AssignedUserName = userName,
+                AssignedEmail = email
+            };
+
+            UserManager manager = new UserManager();
+            manager.RegisterUser(user);
+            DataBind();
+        }
+    }
+
+    protected void RefreshAll(object sender, EventArgs e)
+    {
+        DataBind();
+    }
 }
