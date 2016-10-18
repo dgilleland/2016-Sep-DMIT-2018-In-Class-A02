@@ -46,6 +46,31 @@
                                 </div>
                             </div>
                         </ItemTemplate>
+                        <InsertItemTemplate>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <asp:LinkButton runat="server" ID="InsertButton"
+                                         CssClass="btn btn-primary"
+                                         CommandName="Insert" Text="Add User" />
+                                    <asp:LinkButton runat="server" ID="CancelButton"
+                                         CssClass="btn btn-default"
+                                         CommandName="Cancel" Text="Clear" />
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:TextBox runat="server" ID="UserNameTextBox"
+                                         placeholder="User Name" />
+                                </div>
+                                <div class="col-md-5">
+                                    <asp:TextBox runat="server" ID="EmailTextBox"
+                                         placeholder="Email Address"
+                                         TextMode="Email" />
+                                </div>
+                                <div class="col-md-3">
+                                    TODO: checkboxes for role names....
+                                </div>
+                            </div>
+                        </InsertItemTemplate>
                     </asp:ListView>
                     <asp:ObjectDataSource ID="UserProfileDataSource" runat="server" DataObjectTypeName="Chinook.Framework.Entities.Security.UserProfile" DeleteMethod="RemoveUser" InsertMethod="AddUser" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllUsers" TypeName="Chinook.Framework.BLL.Security.UserManager"></asp:ObjectDataSource>
                 </div>
