@@ -35,7 +35,9 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <asp:LinkButton runat="server" ID="DeleteButton" CommandName="Delete" Text="Delete" />
+                                    <asp:LinkButton runat="server" ID="DeleteButton" 
+                                         CssClass="btn btn-default"
+                                         CommandName="Delete" Text="Delete" />
                                 </div>
                                 <div class="col-md-3">
                                     <%# Item.RoleName %>
@@ -57,8 +59,10 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <asp:LinkButton runat="server" ID="InsertButton"
+                                         CssClass="btn btn-primary"
                                          CommandName="Insert" Text="Add Role" />
                                     <asp:LinkButton runat="server" ID="CancelButton"
+                                         CssClass="btn btn-default"
                                          CommandName="Cancel" Text="Clear" />
                                 </div>
                                 <div class="col-md-3">
