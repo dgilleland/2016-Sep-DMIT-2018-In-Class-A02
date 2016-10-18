@@ -18,6 +18,7 @@
                 <div class="tab-pane fade in active" id="users">
                     <asp:ListView ID="UserListView" runat="server"
                          DataSourceID="UserProfileDataSource" DataKeyNames="UserId"
+                         InsertItemPosition="LastItem"
                          ItemType="Chinook.Framework.Entities.Security.UserProfile">
                         <LayoutTemplate>
                             <div class="row bg-info">
