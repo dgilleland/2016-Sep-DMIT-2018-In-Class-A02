@@ -16,7 +16,11 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="users">
-                    TBA: Show website user details
+                    <asp:ListView ID="UserListView" runat="server"
+                         DataSourceID="UserProfileDataSource">
+
+                    </asp:ListView>
+                    <asp:ObjectDataSource ID="UserProfileDataSource" runat="server"></asp:ObjectDataSource>
                 </div>
                 <div class="tab-pane fade" id="roles">
 
