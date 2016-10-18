@@ -20,7 +20,7 @@
                 </div>
                 <div class="tab-pane fade" id="roles">
 
-                    <asp:ListView ID="RoleListView" runat="server"
+                    <asp:ListView ID="RoleListView" runat="server" InsertItemPosition="LastItem"
                          DataSourceID="RoleDataSource"
                          DataKeyNames="RoleId"
                          ItemType="Chinook.Framework.Entities.Security.RoleProfile">
@@ -52,6 +52,22 @@
                                 </div>
                             </div>
                         </ItemTemplate>
+                        <InsertItemTemplate>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:LinkButton runat="server" ID="InsertButton"
+                                         CommandName="Insert" Text="Add Role" />
+                                    <asp:LinkButton runat="server" ID="CancelButton"
+                                         CommandName="Cancel" Text="Clear" />
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox runat="server" ID="RoleNameTextBox"
+                                         placeholder="Role Name"
+                                         Text="<%# BindItem.RoleName %>" />
+                                </div>
+                            </div>
+                        </InsertItemTemplate>
                     </asp:ListView>
 
 
