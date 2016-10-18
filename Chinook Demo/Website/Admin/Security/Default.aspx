@@ -31,9 +31,19 @@
                         <ItemTemplate>
                             <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5"></div>
-                                <div class="col-md-3"></div>
+                                <div class="col-md-2"><%# Item.UserName %></div>
+                                <div class="col-md-5">
+                                    <%# Item.Email %>
+                                    <%# Item.FirstName + " " + Item.LastName %>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Repeater ID="RoleUserRepeater" runat="server"
+                                         DataSource="<%# Item.RoleMemberships %>"
+                                         ItemType="System.String">
+                                        <ItemTemplate><%# Item %></ItemTemplate>
+                                        <SeparatorTemplate>, </SeparatorTemplate>
+                                    </asp:Repeater>
+                                </div>
                             </div>
                         </ItemTemplate>
                     </asp:ListView>
