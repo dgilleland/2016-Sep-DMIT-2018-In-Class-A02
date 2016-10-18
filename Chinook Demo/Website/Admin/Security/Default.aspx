@@ -17,10 +17,27 @@
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="users">
                     <asp:ListView ID="UserListView" runat="server"
-                         DataSourceID="UserProfileDataSource">
-
+                         DataSourceID="UserProfileDataSource" DataKeyNames="UserId"
+                         ItemType="Chinook.Framework.Entities.Security.UserProfile">
+                        <LayoutTemplate>
+                            <div class="row bg-info">
+                                <div class="col-md-2 h4">Action</div>
+                                <div class="col-md-2 h4">User Name</div>
+                                <div class="col-md-5 h4">Profile</div>
+                                <div class="col-md-3 h4">Roles</div>
+                            </div>
+                            <div runat="server" id="itemPlaceholder"></div>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5"></div>
+                                <div class="col-md-3"></div>
+                            </div>
+                        </ItemTemplate>
                     </asp:ListView>
-                    <asp:ObjectDataSource ID="UserProfileDataSource" runat="server"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="UserProfileDataSource" runat="server" DataObjectTypeName="Chinook.Framework.Entities.Security.UserProfile" DeleteMethod="RemoveUser" InsertMethod="AddUser" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllUsers" TypeName="Chinook.Framework.BLL.Security.UserManager"></asp:ObjectDataSource>
                 </div>
                 <div class="tab-pane fade" id="roles">
 
