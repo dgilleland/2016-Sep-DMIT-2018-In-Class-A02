@@ -84,7 +84,19 @@ namespace Chinook.Framework.BLL.Security
                 }
             }
 
-                return result.ToList();
+            return result.ToList();
+        } // end of ListAllUsers()
+
+        [DataObjectMethod(DataObjectMethodType.Insert, true)]
+        public void AddUser(UserProfile userInfo)
+        {
+            // TODO:
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, true)]
+        public void RemoveUser(UserProfile userInfo)
+        {
+            // TODO:
         }
         #endregion
     }
