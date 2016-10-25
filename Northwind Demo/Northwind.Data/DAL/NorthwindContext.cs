@@ -6,7 +6,7 @@ namespace Northwind.Data.DAL
     using System.Linq;
     using Northwind.Data.Entities;
 
-    public partial class NorthwindContext : DbContext
+    internal partial class NorthwindContext : DbContext
     {
         public NorthwindContext()
             : base("name=NorthwindDb")
