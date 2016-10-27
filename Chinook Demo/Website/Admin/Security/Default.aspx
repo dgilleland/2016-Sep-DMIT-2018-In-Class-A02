@@ -16,6 +16,8 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="users">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
                     <asp:ListView ID="UserListView" runat="server"
                         DataSourceID="UserProfileDataSource" DataKeyNames="UserId"
                         InsertItemPosition="LastItem"
@@ -79,9 +81,13 @@
                         </InsertItemTemplate>
                     </asp:ListView>
                     <asp:ObjectDataSource ID="UserProfileDataSource" runat="server" DataObjectTypeName="Chinook.Framework.Entities.Security.UserProfile" DeleteMethod="RemoveUser" InsertMethod="AddUser" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllUsers" TypeName="Chinook.Framework.BLL.Security.UserManager"></asp:ObjectDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <div class="tab-pane fade" id="roles">
-
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
                     <asp:ListView ID="RoleListView" runat="server" InsertItemPosition="LastItem"
                         DataSourceID="RoleDataSource"
                         DataKeyNames="RoleId"
@@ -139,8 +145,14 @@
 
 
                     <asp:ObjectDataSource ID="RoleDataSource" runat="server" DataObjectTypeName="Chinook.Framework.Entities.Security.RoleProfile" DeleteMethod="RemoveRole" InsertMethod="AddRole" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllRoles" TypeName="Chinook.Framework.BLL.Security.RoleManager"></asp:ObjectDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
                 </div>
                 <div class="tab-pane fade" id="unregistered">
+                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                        <ContentTemplate>
                     <asp:GridView ID="UnregisteredUsersGridView" runat="server"
                         CssClass="table table-hover" AutoGenerateColumns="False"
                         DataSourceID="UnregisteredUserDataSource"
@@ -166,6 +178,10 @@
                     </asp:GridView>
                     <asp:ObjectDataSource runat="server" ID="UnregisteredUserDataSource" OldValuesParameterFormatString="original_{0}"
                         SelectMethod="ListAllUnregisteredUsers" TypeName="Chinook.Framework.BLL.Security.UserManager"></asp:ObjectDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
                 </div>
             </div>
         </div>

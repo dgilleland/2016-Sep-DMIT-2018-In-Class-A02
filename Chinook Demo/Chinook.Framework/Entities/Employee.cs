@@ -54,8 +54,8 @@ namespace Chinook.Framework.Entities
 
         public virtual ICollection<Customer> Customers { get; set; }
 
-        public virtual ICollection<Employee> Subordinates { get; set; }
+        //public virtual ICollection<Employee> Subordinates { get; set; }
 
-        public virtual Employee Supervisor { get; set; }
+        //public virtual Employee Supervisor { get; set; }
     }
 }
