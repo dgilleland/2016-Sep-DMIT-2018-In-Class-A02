@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\HumanResourcesController.cs" />
     <Compile Include="DataModels\Customer.cs" />
     <Compile Include="DataModels\CustomerHistory.cs" />
     <Compile Include="DataModels\CustomerOrder.cs" />

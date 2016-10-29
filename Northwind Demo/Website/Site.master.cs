@@ -67,6 +67,7 @@ public partial class SiteMaster : MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         MenuSecurityAdmin.Visible = Request.IsAuthenticated && Context.User.IsInRole("WebsiteAdmins");
+        StaffOnly.Visible = Request.IsAuthenticated && Context.User.IsInRole("Staff");
     }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

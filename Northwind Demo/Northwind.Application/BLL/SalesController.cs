@@ -12,6 +12,7 @@ namespace Northwind.Application.BLL
     [DataObject]
     public class SalesController
     {
+        #region Customer Management
         public CustomerHistory GetCustomerHistory(string customerId)
         {
             using (var context = new NorthwindContext())
@@ -85,5 +86,6 @@ namespace Northwind.Application.BLL
                 return customers.ToList();
             }
         }
+        #endregion
     }
 }
