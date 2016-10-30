@@ -13,7 +13,7 @@ namespace Northwind.Application.DataModels
         public string JobTitle { get; set; }
         public DateTime? HireDate { get; set; }
         public byte[] Photo { get; set; }
-        public IEnumerable<string> Territories { get; set; }
+        public IEnumerable<StaffTerritory> Territories { get; set; }
         public byte[] CleanPhoto
         {
             get
@@ -21,5 +21,11 @@ namespace Northwind.Application.DataModels
                 return Photo.Skip(78).ToArray();
             }
         }
+    }
+    public class StaffTerritory
+    {
+        public int StaffId { get; set; }
+        public string TerritoryId { get; set; }
+        public string TerritoryName { get; set; }
     }
 }

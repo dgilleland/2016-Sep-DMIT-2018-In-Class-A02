@@ -17,25 +17,39 @@ namespace Northwind.Application.BLL
     {
         #region Business Processes
         #region Commands
-        // AssignEmployeeTerritory
         public void AssignEmployeeTerritory(TerritoryAssignment assignment)
         {
+            // TODO: AssignEmployeeTerritory
         }
+
         public void RemoveTerritoryAssignment(TerritoryAssignment assignment)
         {
+            // TODO: RemoveTerritoryAssignment
         }
-        // HireEmployee
+
         public void HireEmployee(NewEmployeeProfile profile)
         {
-
+            // TODO: HireEmployee
         }
-        // FireEmployee
+
         public void FireEmployee(int employeeId, IEnumerable<TerritoryAssignment> reassignedTerritories)
         {
+            // TODO: FireEmployee
         }
         #endregion
         #region Queries
-        // ListStaff
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Territory> ListUnassignedTerritories()
+        {
+            using (var context = new NorthwindContext())
+            {
+                var results = from data in context.Territories
+                              where data.Employees.Count == 0
+                              select data;
+                return results.ToList();
+            }
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<StaffProfile> ListStaff()
         {
@@ -51,14 +65,20 @@ namespace Northwind.Application.BLL
                                  Id = data.EmployeeID,
                                  Territories = from place in data.Territories
                                                orderby place.TerritoryDescription
-                                               select place.TerritoryDescription
+                                               select new StaffTerritory()
+                                               {
+                                                   StaffId = data.EmployeeID,
+                                                   TerritoryId = place.TerritoryID,
+                                                   TerritoryName = place.TerritoryDescription
+                                               }
                                  // Yearly Sales/Order count
 
                              };
                 return result.ToList();
             }
         }
-        // GetEmployeeRegionalManagementReport
+
+        // TODO: GetEmployeeRegionalManagementReport
         #endregion
         #endregion
 
