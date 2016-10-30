@@ -24,6 +24,7 @@ public partial class Admin_Staffing : System.Web.UI.Page
             TerritoryId = e.Keys["TerritoryId"].ToString()
         };
         controller.RemoveTerritoryAssignment(assignment);
+        DataBind(); // Force all child controls to bind
     }
 
     protected void StaffListView_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -45,8 +46,9 @@ public partial class Admin_Staffing : System.Web.UI.Page
                 controller.AssignEmployeeTerritory(assignment);
 
                 territoryToAdd.Text = "";
-
+                DataBind(); // Force all child controls to bind
                 MessageBox.Text = $"Assigned {territoryName}";
+                e.Handled = true; // Only really required for built-in supported commands like "Update"
             }
         }
     }

@@ -19,12 +19,26 @@ namespace Northwind.Application.BLL
         #region Commands
         public void AssignEmployeeTerritory(TerritoryAssignment assignment)
         {
-            // TODO: AssignEmployeeTerritory
+            using (var context = new NorthwindContext())
+            {
+                var employee = context.Employees.Find(assignment.EmployeeId);
+                var territory = context.Territories.Find(assignment.TerritoryId);
+                employee.Territories.Add(territory);
+
+                context.SaveChanges();
+            }
         }
 
         public void RemoveTerritoryAssignment(TerritoryAssignment assignment)
         {
-            // TODO: RemoveTerritoryAssignment
+            using (var context = new NorthwindContext())
+            {
+                var employee = context.Employees.Find(assignment.EmployeeId);
+                var territory = context.Territories.Find(assignment.TerritoryId);
+                employee.Territories.Remove(territory);
+
+                context.SaveChanges();
+            }
         }
 
         public void HireEmployee(NewEmployeeProfile profile)
