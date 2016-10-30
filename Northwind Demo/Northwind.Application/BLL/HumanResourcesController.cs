@@ -1,4 +1,6 @@
-﻿using Northwind.Data.DAL;
+﻿using Northwind.Application.DataModels;
+using Northwind.Application.DataModels.Commands;
+using Northwind.Data.DAL;
 using Northwind.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,54 @@ namespace Northwind.Application.BLL
     [DataObject]
     public class HumanResourcesController
     {
-        #region Sales Regions/Territories
+        #region Business Processes
+        #region Commands
+        // AssignEmployeeTerritory
+        public void AssignEmployeeTerritory(TerritoryAssignment assignment)
+        {
+        }
+        public void RemoveTerritoryAssignment(TerritoryAssignment assignment)
+        {
+        }
+        // HireEmployee
+        public void HireEmployee(NewEmployeeProfile profile)
+        {
+
+        }
+        // FireEmployee
+        public void FireEmployee(int employeeId, IEnumerable<TerritoryAssignment> reassignedTerritories)
+        {
+        }
+        #endregion
+        #region Queries
+        // ListStaff
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<StaffProfile> ListStaff()
+        {
+            using (var context = new NorthwindContext())
+            {
+                var result = from data in context.Employees
+                             select new StaffProfile()
+                             {
+                                 Name = data.FirstName + " " + data.LastName,
+                                 JobTitle = data.Title,
+                                 HireDate = data.HireDate,
+                                 Photo = data.Photo,
+                                 Id = data.EmployeeID,
+                                 Territories = from place in data.Territories
+                                               orderby place.TerritoryDescription
+                                               select place.TerritoryDescription
+                                 // Yearly Sales/Order count
+
+                             };
+                return result.ToList();
+            }
+        }
+        // GetEmployeeRegionalManagementReport
+        #endregion
+        #endregion
+
+        #region CRUD - Sales Regions/Territories
         #region Regions
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Region> ListAllRegions()
