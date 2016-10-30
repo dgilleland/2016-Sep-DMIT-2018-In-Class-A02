@@ -48,7 +48,7 @@ namespace Northwind.Application.BLL
 
         public void FireEmployee(int employeeId, IEnumerable<TerritoryAssignment> reassignedTerritories)
         {
-            // TODO: FireEmployee
+            // TODO: FireEmployee - Required change to Employees table (add nullable ReleaseDate)
         }
         #endregion
         #region Queries
@@ -61,6 +61,21 @@ namespace Northwind.Application.BLL
                               where data.Employees.Count == 0
                               select data;
                 return results.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<DropDownData> ListStaffNames()
+        {
+            using (var context = new NorthwindContext())
+            {
+                var result = from data in context.Employees
+                             select new DropDownData()
+                             {
+                                 DataText = data.FirstName + " " + data.LastName,
+                                 DataValue = data.EmployeeID.ToString()
+                             };
+                return result.ToList();
             }
         }
 

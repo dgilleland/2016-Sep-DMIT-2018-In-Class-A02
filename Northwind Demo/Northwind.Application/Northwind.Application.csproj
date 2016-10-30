@@ -65,6 +65,7 @@
     <Compile Include="DataModels\CustomerOrder.cs" />
     <Compile Include="DataModels\CustomerOrderDetail.cs" />
     <Compile Include="BLL\SalesController.cs" />
+    <Compile Include="DataModels\DropDownData.cs" />
     <Compile Include="DataModels\SalesRepresentative.cs" />
     <Compile Include="DataModels\ShipAddress.cs" />
     <Compile Include="DataModels\ShipDetails.cs" />
