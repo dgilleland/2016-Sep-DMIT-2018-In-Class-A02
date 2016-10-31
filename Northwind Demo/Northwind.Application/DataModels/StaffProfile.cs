@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Northwind.Application.BLL.Adapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,9 @@ namespace Northwind.Application.DataModels
         {
             get
             {
-                return Photo.Skip(78).ToArray();
+                if (OleImageHelper.HasOleHeader(Photo))
+                    return OleImageHelper.RemoveOldeHeader(Photo);
+                return Photo;
             }
         }
     }

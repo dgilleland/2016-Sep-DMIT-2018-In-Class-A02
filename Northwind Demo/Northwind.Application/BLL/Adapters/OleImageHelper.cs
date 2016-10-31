@@ -85,5 +85,14 @@ namespace Northwind.Application.BLL.Adapters
             }
             return rawPicture;
         }
+
+        public static byte[] RemoveOldeHeader(byte[] rawPicture)
+        {
+            if (HasOleHeader(rawPicture))
+            {
+                return rawPicture.Skip(78).ToArray();
+            }
+            return rawPicture;
+        }
     }
 }
