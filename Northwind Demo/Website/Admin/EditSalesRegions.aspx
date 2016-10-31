@@ -77,11 +77,12 @@
                         <td>
                             <asp:TextBox Text='<%# BindItem.TerritoryDescription %>' runat="server" ID="TerritoryDescriptionTextBox" /></td>
                         <td>
-                            <asp:DropDownList ID="InsertTerritoryRegionDropDown" runat="server" SelectedValue="<%# BindItem.RegionID %>" 
-                                 DataSourceID="RegionsDataSource" AppendDataBoundItems="true"
-                                 DataValueField="RegionID" DataTextField="RegionDescription">
+                            <asp:DropDownList ID="InsertTerritoryRegionDropDown" runat="server" SelectedValue="<%# BindItem.RegionID %>"
+                                AppendDataBoundItems="true"
+                                DataValueField="RegionID" DataTextField="RegionDescription" DataSourceID="RegionsDropDownDataSource">
                                 <asp:ListItem Value="0">[Select a Region]</asp:ListItem>
                             </asp:DropDownList>
+                            <asp:ObjectDataSource runat="server" ID="RegionsDropDownDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllRegions" TypeName="Northwind.Application.BLL.HumanResourcesController"></asp:ObjectDataSource>
                         </td>
                     </tr>
                 </InsertItemTemplate>
