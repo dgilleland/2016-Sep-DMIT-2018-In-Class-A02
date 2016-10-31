@@ -44,8 +44,8 @@ namespace Northwind.Data.DAL
                 .IsFixedLength();
 
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Employees1)
-                .WithOptional(e => e.Employee1)
+                .HasMany(e => e.SupervisedEmployees)
+                .WithOptional(e => e.Manager)
                 .HasForeignKey(e => e.ReportsTo);
 
             modelBuilder.Entity<Employee>()

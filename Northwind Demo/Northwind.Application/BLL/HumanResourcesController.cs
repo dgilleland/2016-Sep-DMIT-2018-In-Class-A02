@@ -1,4 +1,5 @@
-﻿using Northwind.Application.DataModels;
+﻿using Northwind.Application.BLL.Adapters;
+using Northwind.Application.DataModels;
 using Northwind.Application.DataModels.Commands;
 using Northwind.Data.DAL;
 using Northwind.Data.Entities;
@@ -43,7 +44,32 @@ namespace Northwind.Application.BLL
 
         public void HireEmployee(NewEmployeeProfile profile)
         {
-            // TODO: HireEmployee
+            using (var context = new NorthwindContext())
+            {
+                if (profile.RawPhoto != null)
+                    profile.RawPhoto = OleImageHelper.AddOleHeader(profile.RawPhoto);
+                var employee = new Employee()
+                {
+                    FirstName = profile.FirstName,
+                    LastName = profile.LastName,
+                    Title = profile.Title,
+                    TitleOfCourtesy = profile.TitleOfCourtesy,
+                    BirthDate = profile.BirthDate,
+                    HireDate = profile.StartDate,
+                    Address = profile.Address,
+                    City = profile.City,
+                    Region = profile.Region,
+                    PostalCode = profile.PostalCode,
+                    Country = profile.Country,
+                    HomePhone = profile.HomePhone,
+                    Extension = profile.Extension,
+                    Photo = profile.RawPhoto,
+                    Notes = profile.Notes,
+                    ReportsTo = profile.Supervisor
+                };
+                context.Employees.Add(employee);
+                context.SaveChanges();
+            }
         }
 
         public void FireEmployee(int employeeId, IEnumerable<TerritoryAssignment> reassignedTerritories)

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Adapters\OleImageHelper.cs" />
     <Compile Include="BLL\HumanResourcesController.cs" />
     <Compile Include="DataModels\Commands\NewEmployeeProfile.cs" />
     <Compile Include="DataModels\Commands\TerritoryAssignment.cs" />
