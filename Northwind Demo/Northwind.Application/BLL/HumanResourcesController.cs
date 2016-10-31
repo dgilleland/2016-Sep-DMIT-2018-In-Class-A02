@@ -153,6 +153,7 @@ namespace Northwind.Application.BLL
         {
             using (var context = new NorthwindContext())
             {
+                data.RegionID = context.Regions.Max(x => x.RegionID) + 1;
                 context.Regions.Add(data);
                 context.SaveChanges();
             }
