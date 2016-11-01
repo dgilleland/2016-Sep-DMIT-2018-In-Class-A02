@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="EditSalesRegions.aspx.cs" Inherits="Admin_EditSalesRegions" %>
 
+<%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
+    <div class="row">
+        <div class="col-md-12">
+            <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
             <h1>Regions</h1>
@@ -36,7 +44,17 @@
                     <div runat="server" id="itemPlaceholderContainer"><div runat="server" id="itemPlaceholder" /></div>
                 </LayoutTemplate>
             </asp:ListView>
-            <asp:ObjectDataSource runat="server" ID="RegionsDataSource" DataObjectTypeName="Northwind.Data.Entities.Region" DeleteMethod="DeleteRegion" InsertMethod="AddRegion" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllRegions" TypeName="Northwind.Application.BLL.HumanResourcesController" UpdateMethod="UpdateRegion"></asp:ObjectDataSource>
+            <asp:ObjectDataSource runat="server" ID="RegionsDataSource"
+                 DataObjectTypeName="Northwind.Data.Entities.Region"
+                 DeleteMethod="DeleteRegion" InsertMethod="AddRegion"
+                 OldValuesParameterFormatString="original_{0}"
+                 SelectMethod="ListAllRegions"
+                 TypeName="Northwind.Application.BLL.HumanResourcesController"
+                 UpdateMethod="UpdateRegion"
+                 OnDeleted="CheckForException"
+                 OnInserted="CheckForException"
+                 OnUpdated="CheckForException">
+            </asp:ObjectDataSource>
         </div>
         <div class="col-md-6">
             <h1>Territories</h1>
@@ -121,7 +139,17 @@
                     </table>
                 </LayoutTemplate>
             </asp:ListView>
-            <asp:ObjectDataSource runat="server" ID="TerritoriesDataSource" DataObjectTypeName="Northwind.Data.Entities.Territory" DeleteMethod="DeleteTerritory" InsertMethod="AddTerritory" OldValuesParameterFormatString="original_{0}" SelectMethod="ListAllTerritories" TypeName="Northwind.Application.BLL.HumanResourcesController" UpdateMethod="UpdateTerritory"></asp:ObjectDataSource>
+            <asp:ObjectDataSource runat="server" ID="TerritoriesDataSource"
+                 DataObjectTypeName="Northwind.Data.Entities.Territory"
+                 DeleteMethod="DeleteTerritory" InsertMethod="AddTerritory"
+                 OldValuesParameterFormatString="original_{0}"
+                 SelectMethod="ListAllTerritories"
+                 TypeName="Northwind.Application.BLL.HumanResourcesController"
+                 UpdateMethod="UpdateTerritory"
+                 OnDeleted="CheckForException"
+                 OnInserted="CheckForException"
+                 OnUpdated="CheckForException">
+            </asp:ObjectDataSource>
         </div>
     </div>
 </asp:Content>
