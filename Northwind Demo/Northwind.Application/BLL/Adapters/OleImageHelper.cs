@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// TODO: Fix with other image formats, as per
+// https://blogs.msdn.microsoft.com/pranab/2008/07/15/removing-ole-header-from-images-stored-in-ms-access-db-as-ole-object/
 namespace Northwind.Application.BLL.Adapters
 {
     /// <summary>
@@ -86,7 +88,7 @@ namespace Northwind.Application.BLL.Adapters
             return rawPicture;
         }
 
-        public static byte[] RemoveOldeHeader(byte[] rawPicture)
+        public static byte[] RemoveOleHeader(byte[] rawPicture)
         {
             if (HasOleHeader(rawPicture))
             {
