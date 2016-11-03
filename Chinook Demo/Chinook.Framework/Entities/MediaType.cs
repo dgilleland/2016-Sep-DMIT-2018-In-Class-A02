@@ -6,7 +6,7 @@
 
 namespace Chinook.Framework.Entities
 {
-    [Table("MediaType")]
+    [Table("MediaTypes")]
     public partial class MediaType
     {
         public int MediaTypeId { get; set; }

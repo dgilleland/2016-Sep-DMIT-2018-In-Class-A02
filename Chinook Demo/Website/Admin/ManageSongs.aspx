@@ -78,27 +78,27 @@
                     </span>
                 </InsertItemTemplate>
                 <ItemTemplate>
-                    <div>
-                        Name:
-                        <asp:Label Text='<%# Eval("Name") %>' runat="server" ID="NameLabel" />
-                        AlbumId:
-                        <asp:Label Text='<%# Eval("AlbumId") %>' runat="server" ID="AlbumIdLabel" />
-                        MediaTypeId:
-                        <asp:Label Text='<%# Eval("MediaTypeId") %>' runat="server" ID="MediaTypeIdLabel" />
-                        GenreId:
-                        <asp:Label Text='<%# Eval("GenreId") %>' runat="server" ID="GenreIdLabel" />
-                        Composer:
-                        <asp:Label Text='<%# Eval("Composer") %>' runat="server" ID="ComposerLabel" />
-                        Milliseconds:
-                        <asp:Label Text='<%# Eval("Milliseconds") %>' runat="server" ID="MillisecondsLabel" />
-                        Bytes:
-                        <asp:Label Text='<%# Eval("Bytes") %>' runat="server" ID="BytesLabel" />
-                        UnitPrice:
-                        <asp:Label Text='<%# Eval("UnitPrice") %>' runat="server" ID="UnitPriceLabel" />
-                        <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
-                        <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
-                        
-                        
+                    <div class="col-md-3 col-lg-4 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <%# Item.Name %>
+                                    <span class="pull-right">
+                                        <%# Item.UnitPrice.ToString("C") %>
+                                    </span>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                On <b><%# Item.Album.Title %></b>
+                                <br />
+                                Composer: <i><%# Item.Composer %></i>
+                                <br />
+                            </div>
+                            <div class="panel-footer">
+                                <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
+                                <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                            </div>
+                        </div>
                     </div>
                 </ItemTemplate>
                 <LayoutTemplate>

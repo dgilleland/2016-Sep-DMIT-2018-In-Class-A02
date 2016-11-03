@@ -6,7 +6,7 @@
 
 namespace Chinook.Framework.Entities
 {
-    [Table("Genre")]
+    [Table("Genres")]
     public partial class Genre
     {
         public int GenreId { get; set; }
