@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AdminCRUD.cs" />
     <Compile Include="BLL\CustomerManager.cs" />
     <Compile Include="BLL\Security\RoleManager.cs" />
     <Compile Include="BLL\Security\UserManager.cs" />
