@@ -17,7 +17,7 @@
                             </span>
                         </h3>
                     </div>
-                    <div class="panel-body" style="min-height:150px;">
+                    <div class="panel-body" style="min-height:170px;">
                         Album:
                         <asp:DropDownList SelectedValue='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdDropDownList" DataSourceID="AlbumDataSource" DataTextField="DisplayText" DataValueField="DataValue" AppendDataBoundItems="true">
                             <asp:ListItem Value="">[no album]</asp:ListItem>
@@ -85,7 +85,7 @@
                             </span>
                         </h3>
                     </div>
-                    <div class="panel-body" style="min-height:150px;">
+                    <div class="panel-body" style="min-height:170px;">
                         <b title="Album Title"><%# Item.Album?.Title %></b>
                         <br />
                         Composer: <i><%# Item.Composer %></i>
