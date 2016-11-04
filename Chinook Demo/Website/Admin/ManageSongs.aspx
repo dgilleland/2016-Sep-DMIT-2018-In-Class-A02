@@ -7,37 +7,42 @@
         DataKeyNames="TrackID"
         ItemType="Chinook.Framework.Entities.Track">
         <EditItemTemplate>
-            <span>TrackId:
-                <asp:TextBox Text='<%# Bind("TrackId") %>' runat="server" ID="TrackIdTextBox" />
-                Name:
-                <asp:TextBox Text='<%# Bind("Name") %>' runat="server" ID="NameTextBox" />
-                AlbumId:
-                <asp:TextBox Text='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdTextBox" />
-                MediaTypeId:
-                <asp:TextBox Text='<%# Bind("MediaTypeId") %>' runat="server" ID="MediaTypeIdTextBox" />
-                GenreId:
-                <asp:TextBox Text='<%# Bind("GenreId") %>' runat="server" ID="GenreIdTextBox" />
-                Composer:
-                <asp:TextBox Text='<%# Bind("Composer") %>' runat="server" ID="ComposerTextBox" />
-                Milliseconds:
-                <asp:TextBox Text='<%# Bind("Milliseconds") %>' runat="server" ID="MillisecondsTextBox" />
-                Bytes:
-                <asp:TextBox Text='<%# Bind("Bytes") %>' runat="server" ID="BytesTextBox" />
-                UnitPrice:
-                <asp:TextBox Text='<%# Bind("UnitPrice") %>' runat="server" ID="UnitPriceTextBox" />
-                Album:
-                <asp:TextBox Text='<%# Bind("Album") %>' runat="server" ID="AlbumTextBox" />
-                Genre:
-                <asp:TextBox Text='<%# Bind("Genre") %>' runat="server" ID="GenreTextBox" />
-                InvoiceLines:
-                <asp:TextBox Text='<%# Bind("InvoiceLines") %>' runat="server" ID="InvoiceLinesTextBox" />
-                MediaType:
-                <asp:TextBox Text='<%# Bind("MediaType") %>' runat="server" ID="MediaTypeTextBox" />
-                Playlists:
-                <asp:TextBox Text='<%# Bind("Playlists") %>' runat="server" ID="PlaylistsTextBox" />
-                <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" /><asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <asp:TextBox Text='<%# Bind("Name") %>' runat="server" ID="NameTextBox" placeholder="Song Name" />
+                            <span class="pull-right">
+                                <asp:TextBox Text='<%# Bind("UnitPrice") %>' runat="server" ID="UnitPriceTextBox" TextMode="Number" placeholder="Unit Price" Width="70px" />
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="panel-body" style="min-height:150px;">
+                        Album:
+                        <asp:DropDownList SelectedValue='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdDropDownList" DataSourceID="AlbumDataSource" DataTextField="DisplayText" DataValueField="DataValue" AppendDataBoundItems="true">
+                            <asp:ListItem Value="">[no album]</asp:ListItem>
+                        </asp:DropDownList>
+                        <br />
+                        Composer: <asp:TextBox Text='<%# Bind("Composer") %>' runat="server" ID="ComposerTextBox" placeholder="Composer" />
+                        <br />
+                        Running Time: <asp:TextBox Text='<%# BindItem.Milliseconds %>' runat="server" ID="MillisecondsTextBox" 
+                     placeholder="Milliseconds" ToolTip="in milliseconds" /> ms
+                        <br />
+                        Genre: 
+                        <asp:DropDownList SelectedValue='<%# Bind("GenreId") %>' runat="server" ID="GenreIdDropDownList" DataSourceID="GenreDataSource" DataTextField="DisplayText" DataValueField="DataValue" AppendDataBoundItems="true">
+                            <asp:ListItem Value="">[unknown genre]</asp:ListItem>
+                        </asp:DropDownList>
+                        <br />
+                        Media: 
+                        <asp:DropDownList SelectedValue='<%# Bind("MediaTypeId") %>' runat="server" ID="MediaTypeIdDropDownList" DataSourceID="MediaTypeDataSource" DataTextField="DisplayText" DataValueField="DataValue"></asp:DropDownList>
+                    </div>
+                    <div class="panel-footer">
+                        <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
+                        <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
+                    </div>
+                </div>
+            </div>
                         
-            </span>
         </EditItemTemplate>
         <EmptyDataTemplate>
             <span>No data was returned.</span>
@@ -47,7 +52,7 @@
                 <asp:TextBox Text='<%# Bind("Name") %>' runat="server" ID="NameTextBox" placeholder="Song Name" />
                 <asp:TextBox Text='<%# Bind("Composer") %>' runat="server" ID="ComposerTextBox" placeholder="Composer" />
                 <asp:TextBox Text='<%# BindItem.Milliseconds %>' runat="server" ID="MillisecondsTextBox" 
-                     placeholder="Duration" />
+                     placeholder="Milliseconds" />
                 <asp:TextBox Text='<%# Bind("UnitPrice") %>' runat="server" ID="UnitPriceTextBox" placeholder="Unit Price" />
                 <br />
                 Album:
