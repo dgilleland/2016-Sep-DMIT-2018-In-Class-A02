@@ -11,4 +11,11 @@ public partial class Admin_ManageSongs : System.Web.UI.Page
     {
 
     }
+
+    protected string ConvertMillisecondsToText(int milliseconds)
+    {
+        int seconds = milliseconds / 1000;
+        string text = $"{seconds / 60} min, {seconds % 60} sec";
+        return text;
+    }
 }

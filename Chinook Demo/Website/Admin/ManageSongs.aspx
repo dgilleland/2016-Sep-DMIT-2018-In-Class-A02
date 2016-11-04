@@ -76,7 +76,7 @@
             </span>
         </InsertItemTemplate>
         <ItemTemplate>
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -87,10 +87,14 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        On <b><%# Item.Album.Title %></b>
+                        <b title="Album Title"><%# Item.Album.Title %></b>
                         <br />
                         Composer: <i><%# Item.Composer %></i>
                         <br />
+                        Running Time: <%# ConvertMillisecondsToText(Item.Milliseconds) %>
+                        <br />
+                        Genre: <span class="badge"><%# Item.Genre.Name %></span>
+                        Media: <span class="badge"><%# Item.MediaType.Name %></span>
                     </div>
                     <div class="panel-footer">
                         <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
@@ -102,7 +106,7 @@
         <LayoutTemplate>
             <div class="row" runat="server" id="itemPlaceholderContainer"><span runat="server" id="itemPlaceholder" /></div>
             <div>
-                <asp:DataPager runat="server" ID="DataPager1">
+                <asp:DataPager runat="server" ID="DataPager1" PageSize="6">
                     <Fields>
                         <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False"></asp:NextPreviousPagerField>
                         <asp:NumericPagerField></asp:NumericPagerField>
