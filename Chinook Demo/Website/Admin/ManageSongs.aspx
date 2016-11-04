@@ -51,13 +51,17 @@
                 <asp:TextBox Text='<%# Bind("UnitPrice") %>' runat="server" ID="UnitPriceTextBox" placeholder="Unit Price" />
                 <br />
                 Album:
-                <asp:DropDownList SelectedValue='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdDropDownList" DataSourceID="AlbumDataSource" DataTextField="DisplayText" DataValueField="DataValue"></asp:DropDownList>
+                <asp:DropDownList SelectedValue='<%# Bind("AlbumId") %>' runat="server" ID="AlbumIdDropDownList" DataSourceID="AlbumDataSource" DataTextField="DisplayText" DataValueField="DataValue" AppendDataBoundItems="true">
+                    <asp:ListItem Value="">[no album]</asp:ListItem>
+                </asp:DropDownList>
                 &nbsp;&nbsp;&nbsp;
                 Media Type:
                 <asp:DropDownList SelectedValue='<%# Bind("MediaTypeId") %>' runat="server" ID="MediaTypeIdDropDownList" DataSourceID="MediaTypeDataSource" DataTextField="DisplayText" DataValueField="DataValue"></asp:DropDownList>
                 &nbsp;&nbsp;&nbsp;
                 Genre:
-                <asp:DropDownList SelectedValue='<%# Bind("GenreId") %>' runat="server" ID="GenreIdDropDownList" DataSourceID="GenreDataSource" DataTextField="DisplayText" DataValueField="DataValue"></asp:DropDownList>
+                <asp:DropDownList SelectedValue='<%# Bind("GenreId") %>' runat="server" ID="GenreIdDropDownList" DataSourceID="GenreDataSource" DataTextField="DisplayText" DataValueField="DataValue" AppendDataBoundItems="true">
+                    <asp:ListItem Value="">[unknown genre]</asp:ListItem>
+                </asp:DropDownList>
             </div>
             <div class="col-md-2">
                 <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
@@ -77,13 +81,13 @@
                         </h3>
                     </div>
                     <div class="panel-body" style="min-height:150px;">
-                        <b title="Album Title"><%# Item.Album.Title %></b>
+                        <b title="Album Title"><%# Item.Album?.Title %></b>
                         <br />
                         Composer: <i><%# Item.Composer %></i>
                         <br />
                         Running Time: <%# ConvertMillisecondsToText(Item.Milliseconds) %>
                         <br />
-                        Genre: <span class="badge"><%# Item.Genre.Name %></span>
+                        Genre: <span class="badge"><%# Item.Genre?.Name %></span>
                         Media: <span class="badge"><%# Item.MediaType.Name %></span>
                     </div>
                     <div class="panel-footer">
