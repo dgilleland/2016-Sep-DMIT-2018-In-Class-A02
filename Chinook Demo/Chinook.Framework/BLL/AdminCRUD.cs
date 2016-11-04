@@ -22,6 +22,7 @@ namespace Chinook.Framework.BLL
                               .Include(x => x.Album)
                               .Include(x => x.MediaType)
                               .Include(x => x.Genre)
+                              .OrderBy(x => x.Name)
                               .ToList();
             }
         }

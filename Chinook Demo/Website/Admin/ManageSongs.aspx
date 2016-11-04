@@ -76,7 +76,7 @@
                             </span>
                         </h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="min-height:150px;">
                         <b title="Album Title"><%# Item.Album.Title %></b>
                         <br />
                         Composer: <i><%# Item.Composer %></i>
