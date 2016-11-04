@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Data.Entity;
+using Chinook.Framework.Entities.ViewModels;
 
 namespace Chinook.Framework.BLL
 {
@@ -55,6 +56,56 @@ namespace Chinook.Framework.BLL
                 var existing = context.Tracks.Find(info.TrackId);
                 context.Tracks.Remove(existing);
                 context.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region Foreign Key Methods
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<DropDownDataItem> ListAlbumTitles()
+        {
+            using (var context = new ChinookContext())
+            {
+                var result = from data in context.Albums
+                             orderby data.Title
+                             select new DropDownDataItem()
+                             {
+                                 DisplayText = data.Title,
+                                 DataValue = data.AlbumId.ToString()
+                             };
+                return result.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<DropDownDataItem> ListGenres()
+        {
+            using (var context = new ChinookContext())
+            {
+                var result = from data in context.Genres
+                             orderby data.Name
+                             select new DropDownDataItem()
+                             {
+                                 DisplayText = data.Name,
+                                 DataValue = data.GenreId.ToString()
+                             };
+                return result.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<DropDownDataItem> ListMediaTypes()
+        {
+            using (var context = new ChinookContext())
+            {
+                var result = from data in context.MediaTypes
+                             orderby data.Name
+                             select new DropDownDataItem()
+                             {
+                                 DisplayText = data.Name,
+                                 DataValue = data.MediaTypeId.ToString()
+                             };
+                return result.ToList();
             }
         }
         #endregion

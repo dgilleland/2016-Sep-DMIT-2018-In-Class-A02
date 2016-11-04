@@ -81,6 +81,7 @@
     <Compile Include="Entities\Security\UserProfile.cs" />
     <Compile Include="Entities\Track.cs" />
     <Compile Include="Entities\ViewModels\CustomerProfile.cs" />
+    <Compile Include="Entities\ViewModels\DropDownDataItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
