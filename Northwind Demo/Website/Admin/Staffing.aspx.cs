@@ -51,5 +51,11 @@ public partial class Admin_Staffing : System.Web.UI.Page
                 e.Handled = true; // Only really required for built-in supported commands like "Update"
             }
         }
+
+        if (e.CommandName.Equals("FireEmployee"))
+        {
+            string targetUrl = $"~/Admin/FireStaff.aspx?eid={e.CommandArgument}";
+            Response.Redirect(targetUrl, true);
+        }
     }
 }

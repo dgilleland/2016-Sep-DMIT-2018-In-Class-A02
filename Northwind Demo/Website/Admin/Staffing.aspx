@@ -32,9 +32,10 @@
                             <h3 class="panel-title"><%# Item.JobTitle %><small class="pull-right"><%# $"Since <b>{Item.HireDate:MMM yyyy}</b>" %></small></h3>
                         </div>
                         <div class="panel-body" style="min-height: 175px;">
-                            <img src='<%# @"data:image/gif;base64," + Convert.ToBase64String(Item.CleanPhoto) %>'
+                            <!-- Image Hack -->
+                            <img src='<%# @"data:image/gif;base64," + Convert.ToBase64String(Item.CleanPhoto.AsEnumerable().Skip(78).ToArray()) %>'
                                     width="48" height="56" class="img-thumbnail pull-right" />
-                            <p class="lead"><%# Item.Name %></p>
+                            <p class="lead"><%# Item.Name %> <asp:LinkButton ID="FireEmployee" runat="server" CommandName="FireEmployee" CommandArgument="<%# Item.Id %>" CssClass="glyphicon glyphicon-ban-circle" title="Fire Employee"></asp:LinkButton></p>
                             <b>Service Territories:</b><br />
                             <asp:ListView ID="StaffTerritoryId" runat="server" DataSource="<%# Item.Territories %>"
                                     ItemType="Northwind.Application.DataModels.StaffTerritory"
@@ -79,6 +80,15 @@
     <asp:ObjectDataSource runat="server" ID="UnassignedDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ListUnassignedTerritories" TypeName="Northwind.Application.BLL.HumanResourcesController"></asp:ObjectDataSource>
 
     <style type="text/css">
+        .lead .glyphicon {
+            color: darkred;
+            display: none;
+        }
+
+        .lead:hover .glyphicon {
+            display: inline;
+        }
+
         .hovershow .badge {
             display: none;
         }

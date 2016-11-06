@@ -20,7 +20,7 @@ namespace Northwind.Application.DataModels
             get
             {
                 if (OleImageHelper.HasOleHeader(Photo))
-                    return OleImageHelper.RemoveOldeHeader(Photo);
+                    return OleImageHelper.RemoveOleHeader(Photo);
                 return Photo;
             }
         }
