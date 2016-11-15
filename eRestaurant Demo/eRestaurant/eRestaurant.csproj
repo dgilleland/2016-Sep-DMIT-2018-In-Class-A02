@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\eRestaurantReportController.cs" />
     <Compile Include="BLL\MenuController.cs" />
     <Compile Include="BLL\RestaurantAdminController.cs" />
     <Compile Include="Entities\Bill.cs" />

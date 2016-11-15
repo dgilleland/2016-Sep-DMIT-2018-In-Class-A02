@@ -1,6 +1,6 @@
 ﻿namespace eRestaurant.Entities.Pocos
 {
-    public class CategoryMenuItems
+    public class CategoryMenuItem
     {
         public string CategoryDescription { get; set; }
         public string ItemDescription { get; set; }
