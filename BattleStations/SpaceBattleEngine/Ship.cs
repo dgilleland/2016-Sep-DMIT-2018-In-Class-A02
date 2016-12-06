@@ -18,6 +18,14 @@ namespace SpaceBattleEngine
             Registry = registry;
         }
 
+        public Ship(int power, string registry, int sheilds, bool disabled)
+        {
+            Power = power;
+            Registry = registry;
+            Shields = sheilds;
+            Disabled = disabled;
+        }
+
         public void RaiseShields()
         {
             int shieldStrength = Rnd.Next(200);
