@@ -9,7 +9,8 @@
     <div class="row">
         <div class="col-md-2">
             <h2>Federation</h2>
-            <asp:GridView ID="GoodFleet" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanging="GoodFleet_SelectedIndexChanging" ItemType="SpaceBattleEngine.Ship" ViewStateMode="Enabled">
+            <asp:GridView ID="GoodFleet" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanging="GoodFleet_SelectedIndexChanging"
+                OnRowDeleting="GoodFleet_RowDeleting" ItemType="SpaceBattleEngine.Ship" ViewStateMode="Enabled">
                 <Columns>
                     <asp:BoundField DataField="Registry" HeaderText="Registry" />
                     <asp:TemplateField HeaderText="Power" ItemStyle-HorizontalAlign="Center">
@@ -26,18 +27,22 @@
             <h2 class="text-center">Battle Zone</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <asp:GridView ID="Federation" runat="server" ItemType="SpaceBattleEngine.Ship" AutoGenerateColumns="False">
+                    <asp:GridView ID="Federation" runat="server" ItemType="SpaceBattleEngine.Ship" AutoGenerateColumns="False" Caption="Green Battle Group">
                         <Columns>
                             <asp:BoundField DataField="Registry" HeaderText="Id"></asp:BoundField>
                             <asp:BoundField DataField="Power" HeaderText="Power"></asp:BoundField>
+                            <asp:BoundField DataField="Shields" HeaderText="Shields"></asp:BoundField>
+                            <asp:CheckBoxField DataField="Disabled" HeaderText="!!"></asp:CheckBoxField>
                         </Columns>
                     </asp:GridView>
                 </div>
                 <div class="col-md-6">
-                    <asp:GridView ID="Clingons" runat="server" ItemType="SpaceBattleEngine.Ship" AutoGenerateColumns="False">
+                    <asp:GridView ID="Clingons" runat="server" ItemType="SpaceBattleEngine.Ship" AutoGenerateColumns="False" Caption="Red Battle Group">
                         <Columns>
                             <asp:BoundField DataField="Registry" HeaderText="Id"></asp:BoundField>
                             <asp:BoundField DataField="Power" HeaderText="Power"></asp:BoundField>
+                            <asp:BoundField DataField="Sheilds" HeaderText="Sheilds"></asp:BoundField>
+                            <asp:CheckBoxField DataField="Disabled" HeaderText="!!"></asp:CheckBoxField>
                         </Columns>
                     </asp:GridView>
                 </div>
