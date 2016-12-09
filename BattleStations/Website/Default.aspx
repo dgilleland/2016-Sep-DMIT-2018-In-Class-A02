@@ -19,7 +19,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:CommandField ShowSelectButton="True" HeaderText="Add" SelectText="==&amp;gt;"></asp:CommandField>
+                    <asp:CommandField ShowSelectButton="True" ShowDeleteButton="true" HeaderText="Add" SelectText="==&amp;gt;"></asp:CommandField>
                 </Columns>
             </asp:GridView>
         </div>

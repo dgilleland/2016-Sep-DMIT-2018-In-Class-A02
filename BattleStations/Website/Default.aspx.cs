@@ -42,8 +42,18 @@ public partial class _Default : Page
         Federation.DataSource = existing;
         Federation.DataBind();
 
-        // Remove it from my GoodFleet gridview
-        GoodFleet.DeleteRow(index);
+        // Remove it from my GoodFleet gridview by extracting list of data
+        // from gridview and rebinding without the specified index
+        List<Ship> existingData = new List<Ship>();
+        foreach(GridViewRow theRow in GoodFleet.Rows)
+        {
+            shipId = theRow.Cells[0].Text;
+            power = int.Parse((row.FindControl("PowerReserve") as Label).Text);
+            existingData.Add(new Ship(power, shipId));
+        }
+        existingData.RemoveAt(index);
+        GoodFleet.DataSource = existingData;
+        GoodFleet.DataBind(); // Voilà !
     }
 
     private List<Ship> ShipsFromGridView(GridView gv)
