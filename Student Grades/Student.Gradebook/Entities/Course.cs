@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Student.Gradebook.Entities
+namespace StudentGradebook.Entities
 {
     public class Course
     {

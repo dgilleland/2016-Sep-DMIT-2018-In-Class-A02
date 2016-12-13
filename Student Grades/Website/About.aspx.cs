@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentGradebook.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,11 @@ public partial class About : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if(!IsPostBack)
+        {
+            var controller = new DummyController();
+            StudentMarksGridView.DataSource = controller.ListFakeStudents();
+            StudentMarksGridView.DataBind();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Student.Gradebook.Entities;
+﻿using StudentGradebook.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Student.Gradebook.DAL
+namespace StudentGradebook.DAL
 {
     internal class GradebookContext : DbContext
     {
